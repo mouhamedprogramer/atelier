@@ -1,0 +1,9 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["gateway", "gir", "gp", "edt"],
+    "baseName": "workspaces",
+    "clientPackageManager": "npm",
+    "directoryPath": "./",
+    "jhipsterVersion": "8.1.0"
+  }
+}

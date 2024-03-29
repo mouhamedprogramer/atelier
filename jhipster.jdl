@@ -1,0 +1,125 @@
+
+application {
+  config {
+    baseName gateway
+    applicationType gateway
+    packageName app.gateway
+    authenticationType oauth2
+    prodDatabaseType postgresql
+    serverPort 8081
+    buildTool maven
+    clientFramework angular
+    cacheProvider ehcache
+    databaseType sql
+    enableHibernateCache true
+    enableTranslation true
+    jhiPrefix eugb
+    languages [fr, en]
+    nativeLanguage fr
+  }
+  entities *
+}
+
+application {
+  config {
+    baseName gir
+    applicationType microservice
+    packageName app.gir
+    authenticationType oauth2
+    buildTool maven
+    prodDatabaseType postgresql
+    serverPort 8082
+    cacheProvider ehcache
+    databaseType sql
+    enableHibernateCache true
+    enableTranslation true
+    jhiPrefix eugb
+  }
+  entities Etudiant, Formation, Ia
+}
+
+application {
+  config {
+    baseName gp
+    applicationType microservice
+    packageName app.gp
+    authenticationType oauth2
+    buildTool maven
+    prodDatabaseType postgresql
+    serverPort 8083
+    cacheProvider ehcache
+    databaseType sql
+    enableHibernateCache true
+    enableTranslation true
+    jhiPrefix eugb
+  }
+  entities Ue, Ip
+}
+
+application {
+  config {
+    baseName edt
+    applicationType microservice
+    packageName app.edt
+    authenticationType oauth2
+    buildTool maven
+    prodDatabaseType mysql
+    serverPort 8084
+    cacheProvider ehcache
+    databaseType sql
+    enableHibernateCache true
+    enableTranslation true
+    jhiPrefix eugb
+  }
+  entities Salle
+}
+
+entity Etudiant {
+	codeEtudiant String required,
+	nom String,
+	prenom String,
+	email String,
+	dateNaissaance Instant,
+    userId Long
+}
+
+entity Formation {
+	code String,
+	libelle String
+}
+
+entity Ia {
+	dateIa LocalDate
+}
+
+entity Ip {
+	dateIp LocalDate,
+    iaId Long required
+}
+
+entity Ue {
+	code String,
+	libelle String,
+    formationId Long required
+}
+
+entity Salle {
+	code String,
+	libelle String
+    capacite Integer
+    status Boolean
+}
+
+relationship OneToOne {
+    Ia to Etudiant,
+    Ia to Formation
+}
+
+
+dto * with mapstruct
+service * with serviceClass
+paginate * with pagination
+
+microservice Etudiant, Formation, Ia with gir
+microservice Ue, Ip with gp
+microservice Salle with edt

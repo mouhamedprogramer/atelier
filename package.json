@@ -1,0 +1,44 @@
+{
+  "workspaces": {
+    "packages": [
+      "gateway",
+      "gir",
+      "gp",
+      "edt"
+    ]
+  },
+  "scripts": {
+    "backend:build-cache": "concurrently npm:backend:build-cache:gateway npm:backend:build-cache:gir npm:backend:build-cache:gp npm:backend:build-cache:edt",
+    "backend:build-cache:edt": "npm run backend:build-cache --workspace edt --if-present",
+    "backend:build-cache:gateway": "npm run backend:build-cache --workspace gateway --if-present",
+    "backend:build-cache:gir": "npm run backend:build-cache --workspace gir --if-present",
+    "backend:build-cache:gp": "npm run backend:build-cache --workspace gp --if-present",
+    "ci:backend:test": "npm run ci:backend:test --workspaces --if-present",
+    "ci:e2e:package": "npm run ci:docker:build --workspaces --if-present && npm run java:docker --workspaces --if-present",
+    "ci:e2e:run": "npm run e2e:headless --workspaces --if-present",
+    "ci:frontend:test": "npm run ci:frontend:test --workspaces --if-present",
+    "java:docker": "concurrently npm:java:docker:gateway npm:java:docker:gir npm:java:docker:gp npm:java:docker:edt",
+    "java:docker:arm64": "concurrently npm:java:docker:arm64:gateway npm:java:docker:arm64:gir npm:java:docker:arm64:gp npm:java:docker:arm64:edt",
+    "java:docker:arm64:edt": "npm run java:docker:arm64 --workspace edt --if-present",
+    "java:docker:arm64:gateway": "npm run java:docker:arm64 --workspace gateway --if-present",
+    "java:docker:arm64:gir": "npm run java:docker:arm64 --workspace gir --if-present",
+    "java:docker:arm64:gp": "npm run java:docker:arm64 --workspace gp --if-present",
+    "java:docker:edt": "npm run java:docker --workspace edt --if-present",
+    "java:docker:gateway": "npm run java:docker --workspace gateway --if-present",
+    "java:docker:gir": "npm run java:docker --workspace gir --if-present",
+    "java:docker:gp": "npm run java:docker --workspace gp --if-present",
+    "watch": "concurrently npm:watch:gateway npm:watch:gir npm:watch:gp npm:watch:edt",
+    "watch:edt": "npm run watch --workspace edt --if-present",
+    "watch:gateway": "npm run watch --workspace gateway --if-present",
+    "watch:gir": "npm run watch --workspace gir --if-present",
+    "watch:gp": "npm run watch --workspace gp --if-present",
+    "webapp:test": "npm run webapp:test --workspaces --if-present"
+  },
+  "devDependencies": {
+    "concurrently": "8.2.2",
+    "rxjs": "7.8.1"
+  },
+  "overrides": {
+    "webpack": "5.89.0"
+  }
+}

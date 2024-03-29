@@ -1,0 +1,10 @@
+{
+  "generator-jhipster": {
+    "appsFolders": ["edt", "gateway", "gir", "gp"],
+    "directoryPath": "../",
+    "jhipsterVersion": "8.1.0",
+    "jwtSecretKey": "MDdlMWQzMmQwY2FjYWUwZGQ3N2VmOGQwOTQwMGMxYjQzYzgwZmVmYzFjZDI4ZDQwMzVlMDk4MjYyODg0MjQ3NDZhMDVjZWQ5NDc3YTIxYzU5ZDYzNmI2NmU3YTViZmYxZjQxMw==",
+    "monitoring": "prometheus",
+    "serviceDiscoveryType": "consul"
+  }
+}
